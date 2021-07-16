@@ -1,0 +1,175 @@
+﻿@model SimpleHouse.Models.Product
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple House - About Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" />
+    <link href="~/Content/css/Detail.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+</head>
+<!--
+
+Simple House
+
+https://templatemo.com/tm-539-simple-house
+
+-->
+<body>
+
+    <div class="container">
+        <!-- Top box -->
+        <!-- Logo & Site Name -->
+        <div class="placeholder">
+            <div class="parallax-window" data-parallax="scroll" data-image-src="/Content/img/simple-house-01.jpg">
+                <div class="tm-header">
+                    <div class="row tm-header-inner">
+                        <div class="col-md-6 col-12">
+                            <img src="/Content/img/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
+                            <div class="tm-site-text-box">
+                                <h1 class="tm-site-title">Simple House</h1>
+                                <h6 class="tm-site-description">new restaurant template</h6>
+                            </div>
+                        </div>
+                        <nav class="col-md-6 col-12 tm-nav">
+                            <ul class="tm-nav-ul">
+                                <li class="tm-nav-li"><a href="~/" class="tm-nav-link">Home</a></li>
+                                <li class="tm-nav-li"><a href="~/" class="tm-nav-link active">Product</a></li>
+                                <li class="tm-nav-li"><a href="~/Home/Cart" class="tm-nav-link">Cart</a></li>
+                                <li class="tm-nav-li"><a href="~/Home/CheckOutSuccess" class="tm-nav-link">Order</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <header class="row tm-welcome-section">
+                <h2 class="col-12 text-center tm-section-title">
+                    @Html.DisplayFor(model => model.Name)
+                </h2>
+                <p class="col-12 text-center">
+                    This is detail page of simple house template.
+                    You can modify and use this HTML template for your website. Total 3 HTML pages included in this template. Header image has a parallax effect.
+                </p>
+            </header>
+
+            <div class="tm-container-inner tm-persons">
+                <div class="row">
+                    <div class="container">
+                        <div class="card">
+                            <div class="container-fliud">
+                                <div class="wrapper row">
+                                    <div class="preview col-md-6">
+
+                                        <div class="preview-pic tab-content">
+                                            <div class="tab-pane active" id="pic-1"><img src="~/@Model.Image"/></div>
+                                            <div class="tab-pane" id="pic-2"><img src="~/Content/img/gallery/01.jpg" /></div>
+                                            <div class="tab-pane" id="pic-3"><img src="~/Content/img/gallery/02.jpg" /></div>
+                                            <div class="tab-pane" id="pic-4"><img src="~/Content/img/gallery/03.jpg" /></div>
+                                            <div class="tab-pane" id="pic-5"><img src="~/Content/img/gallery/04.jpg" /></div>
+                                        </div>
+                                        <ul class="preview-thumbnail nav nav-tabs">
+                                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img style="width:87.56px;height:87.56px"  src="~/@Model.Image" /></a></li>
+                                            <li><a data-target="#pic-2" data-toggle="tab"><img src="~/Content/img/gallery/01.jpg" /></a></li>
+                                            <li><a data-target="#pic-3" data-toggle="tab"><img src="~/Content/img/gallery/02.jpg" /></a></li>
+                                            <li><a data-target="#pic-4" data-toggle="tab"><img src="~/Content/img/gallery/03.jpg" /></a></li>
+                                            <li><a data-target="#pic-5" data-toggle="tab"><img src="~/Content/img/gallery/04.jpg" /></a></li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="details col-md-6">
+                                        <h3 class="product-title">@Html.DisplayFor(model => model.Name)</h3>
+                                        <div class="rating">
+                                            <div class="stars">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            <span class="review-no">41 reviews</span>
+                                        </div>
+                                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                                        <h4 class="price">current price: <span>$@Html.DisplayFor(model => model.Price)</span></h4>
+                                        <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                                        <h5 class="sizes">
+                                            sizes:
+                                            <span class="size" data-toggle="tooltip" title="small">s</span>
+                                            <span class="size" data-toggle="tooltip" title="medium">m</span>
+                                            <span class="size" data-toggle="tooltip" title="large">l</span>
+                                            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                                        </h5>
+                                        <h5 class="colors">
+                                            colors:
+                                            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+                                            <span class="color green"></span>
+                                            <span class="color blue"></span>
+                                        </h5>
+                                        <div class="action">
+                                            <button class="add-to-cart btn btn-default" type="button">@Html.ActionLink("Add To Cart", "AddToCart", new { id = Model.Id, qty = 1 })</button>
+                                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tm-container-inner tm-features">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="tm-feature">
+                            <i class="fas fa-4x fa-pepper-hot tm-feature-icon"></i>
+                            <p class="tm-feature-description">Donec sed orci fermentum, convallis lacus id, tempus elit. Sed eu neque accumsan, porttitor arcu a, interdum est. Donec in risus eu ante.</p>
+                            <a href="index.html" class="tm-btn tm-btn-primary">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="tm-feature">
+                            <i class="fas fa-4x fa-seedling tm-feature-icon"></i>
+                            <p class="tm-feature-description">Maecenas pretium rutrum molestie. Duis dignissim egestas turpis sit. Nam sed suscipit odio. Morbi in dolor finibus, consequat nisl eget.</p>
+                            <a href="index.html" class="tm-btn tm-btn-success">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="tm-feature">
+                            <i class="fas fa-4x fa-cocktail tm-feature-icon"></i>
+                            <p class="tm-feature-description">Morbi in dolor finibus, consequat nisl eget, pretium nunc. Maecenas pretium rutrum molestie. Duis dignissim egestas turpis sit.</p>
+                            <a href="index.html" class="tm-btn tm-btn-danger">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tm-container-inner tm-history">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tm-history-inner">
+                            <img src="/Content/img/about-06.jpg" alt="Image" class="img-fluid tm-history-img" />
+                            <div class="tm-history-text">
+                                <h4 class="tm-history-title">History of our restaurant</h4>
+                                <p class="tm-mb-p">Sed ligula risus, interdum aliquet imperdiet sit amet, auctor sit amet justo. Maecenas posuere lorem id augue interdum vehicula. Praesent sed leo eget libero ultricies congue.</p>
+                                <p>Redistributing this template as a downloadable ZIP file on any template collection site is strictly prohibited. You will need to <a href="https://templatemo.com/contact">contact TemplateMo</a> for additional permissions about our templates. Thank you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="tm-footer text-center">
+            <p>
+                Copyright &copy; 2020 Simple House
+
+                | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a>
+            </p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/js")
+</body>
+</html>

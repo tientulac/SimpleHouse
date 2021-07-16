@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    SimpleHouse.Models.Cart cart = Session["cart"] != null ? (SimpleHouse.Models.Cart)Session["cart"] : new SimpleHouse.Models.Cart();
+}
+
+<h2>Giỏ hàng</h2>
+@if (cart.CartItems.Count > 0)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var item in cart.CartItems)
+            {
+                decimal total = item.Quantity * item.Product.Price;
+                <tr>
+                    <td>@item.Product.Id</td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@total</td>
+                    <td> @Html.ActionLink("Remove", "RemoveItem", new { id = item.Product.Id }) </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-right" colspan="6">
+                    Grand Total: <span class="text-danger">@cart.GrandTotal</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right" colspan="6">
+
+                    @Html.ActionLink("CheckOut", "CheckOut")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <p>Không có sản phẩm nào trong giỏ hàng</p>
+}

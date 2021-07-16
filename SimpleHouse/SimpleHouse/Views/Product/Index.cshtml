@@ -1,0 +1,71 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+
+}
+
+<h2>Index</h2>
+@{ Html.BeginForm("Index", "Product", FormMethod.Get);}
+@Html.TextBox("search")
+<select name="categoryId" class="form-control">
+    <option value="">Select category</option>
+    @foreach (SimpleHouse.Models.Category item in Model.Categories)
+    {
+        <option @(ViewBag.CategoryId == item.Id ? "selected" : "") value="@item.Id">@item.Name</option>
+    }
+</select>
+<button type="submit">Search</button>
+@{ Html.EndForm();}
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Sort by Name ASC", "Index", new { sortOrder = "asc" })
+    @Html.ActionLink("Sort by Name DESC", "Index", new { sortOrder = "desc" })
+</p>
+
+<table class="table">
+    <tr>
+
+        <th>
+            Name
+        </th>
+
+        <th>
+            Image
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (SimpleHouse.Models.Product item in Model.Products)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                <img src="~/@item.Image" width="50" height="50" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

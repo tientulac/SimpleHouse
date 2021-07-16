@@ -1,0 +1,75 @@
+﻿@model SimpleHouse.Models.Order
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    SimpleHouse.Models.Cart cart = Session["cart"] != null ? (SimpleHouse.Models.Cart)Session["cart"] : new SimpleHouse.Models.Cart();
+}
+
+<h2>CheckOut</h2>
+@if (cart.CartItems.Count > 0)
+{
+    <div class="row">
+        <div class="col-8">
+            @{ Html.BeginForm("CreateOrder");}
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Create Order</button>
+            </div>
+            @{ Html.EndForm();}
+        </div>
+        <div class="col-4">
+            <table class="table">
+                <thead>
+                <th>Product name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in cart.CartItems)
+                    {
+                        var sub = item.Quantity * item.Product.Price;
+                        <tr>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Product.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>@sub</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Grand Total</td>
+                        <td>@cart.GrandTotal</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <p>Chưa có sản phẩm để đặt hàng</p>
+}
